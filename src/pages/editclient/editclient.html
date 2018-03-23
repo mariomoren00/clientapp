@@ -1,0 +1,54 @@
+<!--
+  Generated template for the CreateclientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="danger">
+      <ion-title>Edit client</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-item>
+      <ion-label fixed>Name</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="client.name"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Phone</ion-label>
+      <ion-input type="number" value="" [(ngModel)]="client.phone"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="client.email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Enterprise</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="client.enterprise"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <button ion-button full block color="primary" (click)="geolocalitation()">Geolocalitation</button>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Latitude</ion-label>
+      <ion-input type="number" value="" [(ngModel)]="client.latitude"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Logitude</ion-label>
+      <ion-input type="number" value="" [(ngModel)]="client.longitude"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <button ion-button full block color="danger" (click)="edit()">Edit</button>
+    </ion-item>
+  
+  
+  </ion-content>
+  

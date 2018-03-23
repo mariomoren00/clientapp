@@ -1,14 +1,31 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="danger">
     <ion-title>
-      Ionic Blank
+      Clientapp
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-item *ngIf="clients.length == 0"> 
+    Sin clientes
+  </ion-item>
+
+  <ion-card *ngFor="let client of clients; let i = index">
+    <ion-card-content (click)="action(client, i)">
+        <ion-card-header>
+          Cliente: {{client.name}} 
+        </ion-card-header>
+        <ion-card-header>
+          Empresa: {{client.enterprise}} 
+        </ion-card-header>
+    </ion-card-content>
+  </ion-card>
+    
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="getModal()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>
