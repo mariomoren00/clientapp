@@ -5,20 +5,23 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { SQLite } from '@ionic-native/sqlite';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { CreateclientPage } from '../pages/createclient/createclient';
-import { EditclientPage } from '../pages/editclient/editclient';
-import { DetailsclientPage } from '../pages/detailsclient/detailsclient';
+//import { CreateclientPage } from '../pages/createclient/createclient';
+//import { EditclientPage } from '../pages/editclient/editclient';
+//import { DetailsclientPage } from '../pages/detailsclient/detailsclient';
+
+import { ClientsProvider } from '../providers/clients/clients';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    CreateclientPage,
-    EditclientPage,
-    DetailsclientPage
+   // CreateclientPage,
+    //EditclientPage,
+    //DetailsclientPage
   ],
   imports: [
     BrowserModule,
@@ -28,15 +31,17 @@ import { DetailsclientPage } from '../pages/detailsclient/detailsclient';
   entryComponents: [
     MyApp,
     HomePage,
-    CreateclientPage,
-    EditclientPage,
-    DetailsclientPage
+    //CreateclientPage,
+    //EditclientPage,
+    //DetailsclientPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    SQLite,    
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ClientsProvider
   ]
 })
 export class AppModule {}

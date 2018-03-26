@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { Events } from 'ionic-angular';
+
+import { ClientsProvider } from '../../providers/clients/clients';
 
 /**
  * Generated class for the CreateclientPage page.
@@ -29,7 +32,10 @@ export class CreateclientPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private geolocation: Geolocation) {
+    private geolocation: Geolocation,
+    public events: Events,
+    public clientsProvider: ClientsProvider,
+  ) {
   }
 
   ionViewDidLoad() {
@@ -54,6 +60,11 @@ export class CreateclientPage {
    * 
    */
   save(){
-    console.log(this.client);
+    this.clientsProvider.create(this.client).then(client => {
+      this.events.publish('addClient', this.client);      
+      this.navCtrl.pop();
+    }).catch( error => {
+      console.error( error );
+    });
   }
 }

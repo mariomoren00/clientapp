@@ -2,21 +2,50 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SQLite } from '@ionic-native/sqlite';
 
 import { HomePage } from '../pages/home/home';
+
+import { ClientsProvider } from '../providers/clients/clients';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+  // Componente raíz de navegación
+  rootPage: any = null;
+  
+    constructor(
+      public platform: Platform,
+      public statusBar: StatusBar,
+      public splashScreen: SplashScreen,
+      public clientsProvider: ClientsProvider,
+      public sqlite: SQLite
+    ) {
+      this.platform.ready().then(() => {
+        this.statusBar.styleDefault();
+        // Llamamos a la función para crear nuestra base de datos.
+        this.createDatabase();
+      });
+    }
+  
+    // Creamos nuestra base de datos
+    private createDatabase(){
+      this.sqlite.create({
+        name: 'client.db',
+        location: 'default' 
+      }).then((db) => {
+        console.log('Base de datos creado.');
+        this.clientsProvider.setDatabase(db);
+        return this.clientsProvider.createTable();
+      }).then(() =>{
+        console.log('Iniciamos el home principal de root');
+        this.splashScreen.hide();
+        this.rootPage = HomePage;
+      }).catch(error =>{
+        console.log('error');
+        console.error(error);
+      });
+    }
 }
 
