@@ -6,22 +6,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { SQLite } from '@ionic-native/sqlite';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-//import { CreateclientPage } from '../pages/createclient/createclient';
-//import { EditclientPage } from '../pages/editclient/editclient';
-//import { DetailsclientPage } from '../pages/detailsclient/detailsclient';
 
 import { ClientsProvider } from '../providers/clients/clients';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-   // CreateclientPage,
-    //EditclientPage,
-    //DetailsclientPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -30,16 +25,14 @@ import { ClientsProvider } from '../providers/clients/clients';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    //CreateclientPage,
-    //EditclientPage,
-    //DetailsclientPage
+    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
-    SQLite,    
+    SQLite,   
+    GoogleMaps, 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ClientsProvider
   ]
